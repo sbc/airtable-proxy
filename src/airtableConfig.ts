@@ -11,31 +11,17 @@ export interface AirtableConfig {
 
 export const airtableConfigs: Array<AirtableConfig> = [
     {
+        route: "shows",
+        base: "appN3jzpg2Vdty5N9",
+        table: "Shows",
+        filter: "AND({Show Number} >= 575, {Show Status} = 'Published')",
         sort: [{field: "Show Number", direction: "asc"}],
         fields: [
-            'ID',
-            'First Name',
-            'Last Name',
-            'Content',
-        ],
-        fieldMappings: ((records: any[]) => {
-            return records.map( (record: any) => {
-                return {
-                    id: record.ID,
-                    name: `${record['First Name']} ${record['Last Name']}`,
-                    content: record.Content,
-                }
-            })
-        }),
-    },
-    {
-        route: "settings",
-        base: "app123456",
-        table: "Table Name",
-        filter: "Status = 'Published'",
-        fields: [
-            "Key",
-            "Value",
-        ],
-    },
+            'Show',
+            'Show Number',
+            'Scheduled Release Date',
+            'Show Title',
+            'Cover Image URL',
+        ]
+    }
 ];
