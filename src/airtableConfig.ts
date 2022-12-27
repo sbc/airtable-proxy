@@ -4,16 +4,14 @@ export interface AirtableConfig {
     table: string;
     view?: string;
     filter?: string;
+    sort?: Array<{field: string, direction: "asc" | "desc"}>;
     fields: string[];
     fieldMappings?: Function;
 }
 
 export const airtableConfigs: Array<AirtableConfig> = [
     {
-        route: "posts",
-        base: "app123456",
-        table: "Table Name",
-        filter: "Status = 'Published'",
+        sort: [{field: "Show Number", direction: "asc"}],
         fields: [
             'ID',
             'First Name',

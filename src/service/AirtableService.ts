@@ -26,6 +26,9 @@ export default class AirtableService {
         if (this.config.filter) {
             opts.filterByFormula = this.config.filter;
         }
+        if (this.config.filter) {
+            opts.sort = this.config.sort;
+        }
         if (this.config.fields) {
             opts.fields = this.config.fields;
         }
