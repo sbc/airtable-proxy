@@ -27,7 +27,13 @@ for (const config of airtableConfigs) {
   const airtable = new AirtableService(config);
   app.get(`/${config.route}`, async (req: Request, res: Response) => {
     try {
-      const r = await airtable.getCachedTableContent();
+      let r;
+      // if config.route contains a parameter, use getCachedRecordContent, else use getCachedTableContent
+      if (config.route.includes(":")) {
+        r = await airtable.getCachedTableContent(req.params.p);
+      } else {
+        r = await airtable.getCachedTableContent();
+      }
       return res.send(r);
     } catch(e) {
       return res.status(500).send(e);
